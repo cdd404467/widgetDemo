@@ -1,0 +1,16 @@
+//
+//  WidgetDemoPch.pch
+//  widgetDemo
+//
+//  Created by caidd on 2024/11/20.
+//
+
+#ifndef WidgetDemoPch_pch
+#define WidgetDemoPch_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "widgetDemo-Swift.h"
+
+#endif /* WidgetDemoPch_pch */

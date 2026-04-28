@@ -1,0 +1,6 @@
+framework module CddWidget {
+  umbrella header "CddWidget.h"
+  export *
+
+  module * { export * }
+}

@@ -11,9 +11,16 @@ import SwiftUI
 @main
 struct WidgetExtensionBundle: WidgetBundle {
     var body: some Widget {
-        WidgetExtension()
-        small_egg_2Widget()
-        CddMiddleWidget()
-        CddLargeWidget()
+        
+        GifWidget_1()
+        GifWidget_2()
+//        GifWidget()
+        
+//        GifAnimateWidget()
+//        WidgetExtension()
+//        small_egg_2Widget()
+        
+//        CddMiddleWidget()
+//        CddLargeWidget()
     }
 }

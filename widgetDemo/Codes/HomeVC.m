@@ -14,11 +14,17 @@
 
 @implementation HomeVC
 
++ (void)load {
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"主页";
     self.view.backgroundColor = UIColor.whiteColor;
     [self setupUI];
+    
+    
 }
 
 - (void)setupUI {

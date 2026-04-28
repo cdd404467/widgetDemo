@@ -18,10 +18,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self initWindow];
+    
     return YES;
 }
 
 - (void)initWindow {
+
+
+    
+    
     HomeVC *rootVC = [[HomeVC alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:rootVC];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

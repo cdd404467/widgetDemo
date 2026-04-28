@@ -10,6 +10,8 @@
 #import <SceneKit/SceneKit.h>
 #import <QuickLook/QuickLook.h>
 #import "CustomQuickLookVC.h"
+@import IQKeyboardManagerSwift;
+
 
 @interface ModelTestVC ()<ARSCNViewDelegate,QLPreviewControllerDataSource,QLPreviewControllerDelegate,SCNSceneRendererDelegate>
 @property(nonatomic, strong)SCNView *scnView;
@@ -26,12 +28,83 @@
     self.view.backgroundColor = UIColor.whiteColor;
     self.title = @"model test";
     
-    if (self.type == 1) {
-        [self load3dModel_scene];
+//    if (self.type == 1) {
+//        [self load3dModel_scene];
+//    } else {
+//        [self load3dModel_quicklook];
+//    }
+    [self setupUI];
+    
+            
+    
+    
+//    NSArray *reversedKeyArr = @[@"tcejbOdetrop",
+//                                @"xE41revreSCP",
+//                                @"XnoisnetxEte",
+//                                @"gdiW42tiKteg",
+//                                @"diW9CCtT_"
+//    ];
+//    NSString *reversedStr = [reversedKeyArr componentsJoinedByString:@""];
+//    reversedStr = @"widgetDescriptors";
+//    NSMutableString *keyStr = [NSMutableString stringWithCapacity:reversedStr.length];
+//    for (NSInteger i = reversedStr.length - 1; i >= 0; i--) {
+//        unichar c = [reversedStr characterAtIndex:i];
+//        [keyStr appendFormat:@"%C", c];
+//    }
+    
+//    NSLog(@"cdd_keyStr --> %@",keyStr);
+    
+//    CDDClass *cd = [CDDClass new];
+//    [cd cddTest];
+    [self copyWebPToDocuments];
+    
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.cdd.widgetDemo"];
+    BOOL widgetInstalled = [shared boolForKey:@"widget_exist"];
+    NSDate *lastActive = [shared objectForKey:@"WidgetLastActiveDate"];
+
+    if (widgetInstalled) {
+        NSLog(@"✅ 用户已经添加了 Widget，最后活跃时间：%@", lastActive);
     } else {
-        [self load3dModel_quicklook];
+        NSLog(@"❌ 用户还没有添加 Widget");
     }
 }
+
+- (void)copyWebPToDocuments {
+    NSString *fileName = @"cdd_gif.gif";
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"280_2s_10fps" ofType:@"gif"];
+        if (!bundlePath) return;
+        
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        // App Group 共享路径
+        NSURL *groupURL = [fm containerURLForSecurityApplicationGroupIdentifier:@"group.com.cdd.widgetDemo"];
+        NSString *destPath = [[groupURL path] stringByAppendingPathComponent:fileName];
+        
+        // 删除旧文件
+        if ([fm fileExistsAtPath:destPath]) {
+            [fm removeItemAtPath:destPath error:nil];
+        }
+        
+        NSError *error = nil;
+        BOOL success = [fm copyItemAtPath:bundlePath toPath:destPath error:&error];
+        if (success) {
+            NSLog(@"✅ 已拷贝到 AppGroup: %@", destPath);
+        } else {
+            NSLog(@"❌ 拷贝失败: %@", error);
+        }
+}
+
+
+- (void)setupUI {
+    UITextField *tf = [[UITextField alloc] init];
+    tf.backgroundColor = UIColor.systemPinkColor;
+    tf.frame = CGRectMake(50, 600, 300, 50);
+    tf.placeholder = @"cdd 666";
+    [self.view addSubview:tf];
+    
+
+}
+
 
 - (void)load3dModel_scene {
 //    NSURL *usdzURL = [[NSBundle mainBundle] URLForResource:@"widgetModel" withExtension:@"usdz"];
